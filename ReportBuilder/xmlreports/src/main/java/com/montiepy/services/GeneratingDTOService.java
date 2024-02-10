@@ -1,5 +1,6 @@
 package com.montiepy.services;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -198,5 +199,232 @@ public class GeneratingDTOService {
                 .setFax(prescriberContactData.get("fax"))
                 .setEmail(prescriberContactData.get("email"))
         );
+    }
+
+    public ServiceProviderDTO generateServiceProviderDTO() {
+        HashMap<String, Object> serviceProviderData = (HashMap)x3Array.get("serviceProvider");
+        HashMap<String, String> serviceProviderAddressData = (HashMap<String, String>)serviceProviderData.get("addressData");
+        HashMap<String, String> serviceProviderContactData = (HashMap<String, String>)serviceProviderData.get("contactData");
+
+        return (new ServiceProviderDTO())
+        .setIk(serviceProviderData.get("ik"))
+        .setName(serviceProviderData.get("name"))
+        .setNameLocation(serviceProviderData.get("nameLocation"))
+        .setAddressData(
+            (new AddressDTO())
+                .setStreetHousenumber(serviceProviderAddressData.get("street"))
+                .setLkz(serviceProviderAddressData.get("lkz"))
+                .setAddition(serviceProviderAddressData.get("additionalAddress"))
+                .setCity(serviceProviderAddressData.get("city"))
+                .setZip(serviceProviderAddressData.get("zip"))
+                .setDistrict(serviceProviderAddressData.get("district"))
+        )
+        .setContactData((new ContactDTO())
+                .setPhone(serviceProviderContactData.get("phone"))
+                .setMobile(serviceProviderContactData.get("mobile"))
+                .setFax(serviceProviderContactData.get("fax"))
+                .setEmail(serviceProviderContactData.get("email"))
+        );
+    }
+
+    public CommissionExpertOpinionToolsDTO generateCommissionExpertOpinionToolsDTO() {
+        HashMap<String, Object> commissionExpertOpinionToolsData = (HashMap)x3Array.get("commissionExpertOpinionTools");
+
+        return (new CommissionExpertOpinionToolsDTO())
+            .setAnnotation(commissionExpertOpinionToolsData.get("annotation"))
+            .setRequestReceivedDate(commissionExpertOpinionToolsData.get("requestReceivedDate"))
+            .setNumberPlants(commissionExpertOpinionToolsData.get("numberPlants"))
+            .setNumberInstallationsPost(commissionExpertOpinionToolsData.get("numberInstallationsPost"))
+            .setOrderType(commissionExpertOpinionToolsData.get("orderType"))
+            .setAssessmentType(commissionExpertOpinionToolsData.get("assessmentType"))
+            .setExplanationAttachmentsDa(commissionExpertOpinionToolsData.get("explanationAttachmentsDA"))
+            .setExplanationAttachmentsPost(commissionExpertOpinionToolsData.get("explanationAttachmentsPost"))
+            .setExplanationDocumentsMd(commissionExpertOpinionToolsData.get("explanationDocumentsMD"))
+            .setPreparerPvReport(commissionExpertOpinionToolsData.get("preparerPvReport"))
+            .setDeadline(commissionExpertOpinionToolsData.get("deadline"))
+            .setDeadlineDate(commissionExpertOpinionToolsData.get("deadlineDate"))
+            .setKvaAmount(commissionExpertOpinionToolsData.get("kvaAmount"))
+            .setKvaDate(commissionExpertOpinionToolsData.get("kvaDate"))
+            .setOpData(commissionExpertOpinionToolsData.get("opDate"))
+            .setLevelOfCare(commissionExpertOpinionToolsData.get("careLevel"))
+            .setLevelOfCareFromTo(commissionExpertOpinionToolsData.get("careLevelDateFrom"))
+            .setCareService(commissionExpertOpinionToolsData.get("careService"))
+            .setDocumentsAtMd(commissionExpertOpinionToolsData.get("documentsAtMD"))
+            .setPrescriptionDate(commissionExpertOpinionToolsData.get("prescriptionDate"));
+    }
+
+    public ArrayList<RehabilitationDTO> generateRehabilitationDTO() {
+        HashMap<String, Object> rehabilitation = (HashMap)x3Array.get("rehabilitation");
+        ArrayList<RehabilitationDTO> result = new ArrayList<>();
+
+        var fullDiagnoseData = (ArrayList<HashMap<String, String>>)rehabilitation.get("diagnoseData");
+
+        DiagnoseDTO diagnoseDTO;
+        RehabilitationDTO rehabilitationDTOItem;
+        int j = 0;
+        for (HashMap<String, String> rehabilitationData : (ArrayList<HashMap<String, String>>)rehabilitation.get("items")) {
+            var diagnoseData = fullDiagnoseData.get(j++);
+            diagnoseDTO = (new DiagnoseDTO())
+                .setIcd(diagnoseData.get("icd"))
+                .setIcdVersion(diagnoseData.get("icdVersion"))
+                .setLocalization(diagnoseData.get("localization"))
+                .setPlainText(diagnoseData.get("plainText"));
+            
+            rehabilitationDTOItem = (new RehabilitationDTO())
+                .setIk(rehabilitationData.get("ik"))
+                .setIntake(rehabilitationData.get("intake"))
+                .setRelease(rehabilitationData.get("release"))
+                .setName(rehabilitationData.get("name"))
+                .setExecution(rehabilitationData.get("execution"))
+                .setPerformance(rehabilitationData.get("performance"))
+                .setDiagnose(diagnoseDTO);
+            result.add(rehabilitationDTOItem);
+        }
+        return result;
+    }
+
+    public ArrayList<MiMaRecordDTO> generateMiMaRecordDTO() {
+        ArrayList<HashMap<String, String>> mimaData = (ArrayList)x3Array.get("mima");
+
+        ArrayList<MiMaRecordDTO> result = new ArrayList<>();
+
+        MiMaRecordDTO mimaRecordDTOItem;
+        for (HashMap<String, String> mimaDatum : mimaData) {
+            mimaRecordDTOItem = (new MiMaRecordDTO())
+                .setorderNumber(mimaDatum.get("orderNumber"));
+            result.add(mimaRecordDTOItem);
+        }
+        return result;
+    }
+
+    public ArrayList<RemedyDTO> generateRemedyDTO() {
+        ArrayList<HashMap<String, String>> remediesData = (ArrayList)x3Array.get("remedies");
+
+        ArrayList<RemedyDTO> result = new ArrayList<>();
+
+        RemedyDTO remedyDTOItem;
+        for (HashMap<String, String> remediesDatum : remediesData) {
+            remedyDTOItem = (new RemedyDTO())
+                .setStart(remedyDatum.get("start"))
+                .setEnd(remedyDatum.get("end"))
+                .setNumber(remedyDatum.get("number"))
+                .setDescription(remedyDatum.get("description"))
+                .setQuantity(remedyDatum.get("quantity"));
+            result.add(remedyDTOItem);
+        }
+
+        return result;
+    }
+
+    public ArrayList<AssignmentQuestionDTO> generateAssignmentQuestionDTO() {
+        ArrayList<HashMap<String, String>> assignmentQuestions = (ArrayList)x3Array.get("questions");
+
+        ArrayList<AssignmentQuestionDTO> result = new ArrayList<>();
+
+        AssignmentQuestionDTO assignmentQuestionDTOItem;
+        for (HashMap<String, String> assignmentQuestion : assignmentQuestions) {
+            assignmentQuestionDTOItem = (new AssignmentQuestionDTO())
+                .setQuestion(assignmentQuestion.get("question"))
+                .setJustification(assignmentQuestion.get("justification"));
+            result.add(assignmentQuestionDTOItem);
+        }
+        
+        return result;
+    }
+
+    public ArrayList<HospitalizationDTO> generateHospitalizationDTO() {
+        HashMap<String, Object> hospitalization = (HashMap)x3Array.get("hospitalizationData");
+        
+        ArrayList<HospitalizationDTO> result = new ArrayList<>();
+
+        var fullDiagnoseData = (ArrayList<HashMap<String, String>>)hospitalization.get("diagnoseData");
+
+        HospitalizationDTO hospitalizationDTOItem;
+        DiagnoseDTO diagnoseDTO;
+        int j = 0;
+        for (HashMap<String, String> hospitalizationData : (ArrayList<HashMap<String, String>>)hospitalization.get("items")) {
+            var diagnoseData = fullDiagnoseData.get(j++);
+            diagnoseDTO = (new DiagnoseDTO())
+                .setIcd(diagnoseData.get("icd"))
+                .setIcdVersion(diagnoseData.get("icdVersion"))
+                .setLocalization(diagnoseData.get("localization"))
+                .setPlainText(diagnoseData.get("plainText"));
+            
+            hospitalizationDTOItem = (new HospitalizationDTO())
+                .setIk(hospitalizationData.get("ik"))
+                .setIntake(hospitalizationData.get("intake"))
+                .setRelease(hospitalizationData.get("release"))
+                .setName(hospitalizationData.get("name"))
+                .setDiagnose(diagnoseDTO);
+            result.add(hospitalizationDTOItem);
+        }
+
+        return result;
+    }
+
+    public ArrayList<PreSupplyAidsDTO> generatePreSupplyAidsDTO() {
+        ArrayList<HashMap<String, String>> preSupplyAidsData = (ArrayList)x3Array.get("preSupplyAidsData");
+
+        PreSupplyAidsDTO preSupplyAidsDTOItem;
+        ArrayList<PreSupplyAidsDTO> result = new ArrayList<>();
+
+        for (HashMap<String, String> preSupplyAidsDatum : preSupplyAidsData) {
+            preSupplyAidsDTOItem = (new PreSupplyAidsDTO())
+                .setNumber(preSupplyAidsDatum.get("number"))
+                .setDate(preSupplyAidsDatum.get("date"))
+                .setDescription(preSupplyAidsDatum.get("description"))
+                .setStatus(preSupplyAidsDatum.get("status"));
+            result.add(preSupplyAidsDTOItem);
+        }
+
+        return result;
+    }
+
+    public AidsDTO generateAidsDTO() {
+        HashMap<String, String> aidsData = (HashMap)x3Array.get("aids");
+
+        return (new AidsDTO())
+            .setDescription(aidsData.get("description"))
+            .setTo(aidsData.get("to"))
+            .setUnit(aidsData.get("unit"))
+            .setHmnr(aidsData.get("hmnr"))
+            .setKzh(aidsData.get("kzh"))
+            .setLfdNrHm(aidsData.get("lfdNr"))
+            .setAmount(aidsData.get("amount")/*,$attributes*/)
+            .setFrom(aidsData.get("from"));
+    }
+
+    public DelayDTO generateDelayDTO() {
+        HashMap<String, String> delayData = (HashMap)x3Array.get("delay");
+
+        return (new DelayDTO())
+            .setReason(delayData.get("reason"))
+            .setComment(delayData.get("comment"))
+            .setAddress(delayData.get("address"))
+            .setTime(delayData.get("time"))
+            .setDate(delayData.get("date"))
+            .setCity(delayData.get("city"))
+            .setZip(delayData.get("zip"));
+    }
+
+    public SendPrintDTO generateSendPrintDTO() {
+        HashMap<String, String> sendPrintData = (HashMap)x3Array.get("parkInformation");
+        return (new SendPrintDTO())
+            .setReason(sendPrintData.get("reason"))
+            .setParkMode(sendPrintData.get("parkMode"))
+            .setParkUntil(sendPrintData.get("parkUntil"));
+    }
+
+    public CancellationDTO generateCancellationDTO() {
+        HashMap<String, String> cancellationData = (HashMap)x3Array.get("cancellation");
+
+        return (new CancellationDTO())
+            .setOrderNumber(cancellationData.get("orderNumber"))
+            .setOrderType(cancellationData.get("orderType"))
+            .setComment(cancellationData.get("comment"));
+    }
+
+    public FrontLoadingDTO generateFrontLoadingDTO() {
+        return new FrontLoadingDTO();
     }
 }
