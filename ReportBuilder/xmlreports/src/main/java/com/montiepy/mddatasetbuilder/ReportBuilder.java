@@ -1,5 +1,7 @@
 package com.montiepy.mddatasetbuilder;
 
+import java.util.HashMap;
+
 import org.jdom2.Element;
 
 import com.montiepy.services.XMLHandlerService;
@@ -16,14 +18,14 @@ public abstract class ReportBuilder {
     protected XMLHandlerService xmlHandlerService;
 
 
-    abstract protected void mapping(String[] requestData);
-    abstract protected void filling();
-    public void generating() {
+    abstract protected void map(HashMap<String, Object> requestData);
+    abstract protected void fill();
+    public void generate() {
         xmlHandlerService = new XMLHandlerService(rootData);
         xmlData = xmlHandlerService.handleXMLStructure();
     }
 
-    public void creating() {
+    public void create() {
         xmlRoot = xmlHandlerService.getXmlCreator(xmlData);
     }
 
