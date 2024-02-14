@@ -20,56 +20,56 @@ public class ProceduralDataDTO extends AbstractDatasetLeafDTO{
     private LeafDTO ta_version;
 
 
-    public LeafDTO getSender_ik() {
+    public LeafDTO getSenderIk() {
         return this.sender_ik;
     }
 
-    public ProceduralDataDTO setSender_ik(String sender_ik) {
+    public ProceduralDataDTO setSenderIk(String sender_ik) {
         this.sender_ik = new LeafDTO(SENDER_IK, sender_ik);
         return this;
     }
 
-    public LeafDTO getRecipient_ik() {
+    public LeafDTO getRecipientIk() {
         return this.recipient_ik;
     }
 
-    public ProceduralDataDTO setRecipient_ik(String recipient_ik) {
+    public ProceduralDataDTO setRecipientIk(String recipient_ik) {
         this.recipient_ik = new LeafDTO(RECIPIENT_IK, recipient_ik);
         return this;
     }
 
-    public LeafDTO getCreation_date() {
+    public LeafDTO getCreationDate() {
         return this.creation_date;
     }
 
-    public ProceduralDataDTO setCreation_date(String creation_date) {
+    public ProceduralDataDTO setCreationDate(String creation_date) {
         this.creation_date = new LeafDTO(CREATION_DATE, creation_date);
         return this;
     }
 
-    public LeafDTO getCreation_time() {
+    public LeafDTO getCreationTime() {
         return this.creation_time;
     }
 
-    public ProceduralDataDTO setCreation_time(String creation_time) {
+    public ProceduralDataDTO setCreationTime(String creation_time) {
         this.creation_time = new LeafDTO(CREATION_TIME, creation_time);
         return this;
     }
 
-    public LeafDTO getOrder_number() {
+    public LeafDTO getOrderNumber() {
         return this.order_number;
     }
 
-    public ProceduralDataDTO setOrder_number(String order_number) {
+    public ProceduralDataDTO setOrderNumber(String order_number) {
         this.order_number = new LeafDTO(ORDER_NUMBER, order_number);
         return this;
     }
 
-    public LeafDTO getProcess_indicator() {
+    public LeafDTO getProcessIndicator() {
         return this.process_indicator;
     }
 
-    public ProceduralDataDTO setProcess_indicator(String process_indicator) {
+    public ProceduralDataDTO setProcessIndicator(String process_indicator) {
         this.process_indicator = new LeafDTO(PROCESS_INDICATOR, process_indicator);
         return this;
     }
@@ -78,7 +78,7 @@ public class ProceduralDataDTO extends AbstractDatasetLeafDTO{
         return this.ta_version;
     }
 
-    public ProceduralDataDTO setTa_version(String ta_version) {
+    public ProceduralDataDTO setTaVersion(String ta_version) {
         this.ta_version = new LeafDTO(TA_VERSION, ta_version);
         return this;
     }

@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import com.montiepy.DTO.DatasetLeavesDTO.ProceduralDataDTO;
+
 public class GeneratingDTOService {
     private HashMap<String, Map> x3Array;
 
@@ -13,7 +15,7 @@ public class GeneratingDTOService {
     }
 
     public ProceduralDataDTO generateProceduralDTO() {
-        Map proceduralData = x3Array.get("proceduralData");
+        Map<String, String> proceduralData = (Map<String,String>)x3Array.get("proceduralData");
         ProceduralDataDTO proceduralDataDTO = new ProceduralDataDTO();
         proceduralDataDTO
             .setOrderNumber(proceduralData.get("orderNumber"))

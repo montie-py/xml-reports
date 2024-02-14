@@ -3,14 +3,20 @@ package com.montiepy.DTO.DatasetStructureDTO;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.montiepy.Composite.XMLParent;
 import com.montiepy.DTO.DatasetLeavesDTO.AbstractDatasetLeafDTO;
 
 import com.montiepy.DatasetStructure.XMLParentInterface;
 
-abstract class DatasetDTO implements XMLParentInterface{
+public abstract class DatasetDTO implements XMLParentInterface{
     protected String tagname;
 
-    protected ArrayList<String> attributes;
+    protected ArrayList<LeafAttributesDTO> attributes;
+
+
+    public DatasetDTO() {
+    }
 
 
     public DatasetDTO(String tagname, AbstractDatasetLeafDTO datasetLeafDTO) {
@@ -31,7 +37,7 @@ abstract class DatasetDTO implements XMLParentInterface{
         return tagname;
     }
 
-    public ArrayList<String> getAttributes() {
+    public ArrayList<LeafAttributesDTO> getAttributes() {
         return attributes;
     }
 

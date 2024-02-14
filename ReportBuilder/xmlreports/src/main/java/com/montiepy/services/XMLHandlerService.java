@@ -2,6 +2,8 @@ package com.montiepy.services;
 
 import org.jdom2.Element;
 
+import com.montiepy.Composite.XMLParent;
+
 public class XMLHandlerService {
     private Element rootXML;
 
