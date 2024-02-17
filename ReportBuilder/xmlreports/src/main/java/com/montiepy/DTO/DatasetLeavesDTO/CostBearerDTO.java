@@ -1,6 +1,10 @@
 package com.montiepy.DTO.DatasetLeavesDTO;
 
 import com.montiepy.DTO.DatasetStructureDTO.LeafDTO;
+import com.montiepy.DatasetStructure.ReusableStructure.Address;
+import com.montiepy.DatasetStructure.ReusableStructure.Contact;
+import com.montiepy.DatasetStructure.ReusableStructure.Extension;
+import com.montiepy.DatasetStructure.ReusableStructure.OrderNumber;
 import com.montiepy.DatasetStructure.ReusableStructure.SFBLocation;
 import com.montiepy.DatasetStructure.ReusableStructure.SFBPrevious;
 
@@ -22,6 +26,6 @@ public class CostBearerDTO extends AbstractDatasetLeafDTO {
     private Contact contactData;
     private Address addressData;
     private OrderNumber orderNumber;
-
+    
 }
 
