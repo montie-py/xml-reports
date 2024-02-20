@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.montiepy.Composite.XMLNode;
-import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.SfbLocationDTO;
+import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.SFBLocationDTO;
 import com.montiepy.DTO.DatasetStructureDTO.DatasetDTO;
 
 public class SFBLocation extends DatasetDTO{
     private final static String SFB_LOCATION = "mdk2:SFB_Standort";
     
-    private final SfbLocationDTO sfbLocationDTO;
+    private final SFBLocationDTO sfbLocationDTO;
 
 
-    public SFBLocation(SfbLocationDTO sfbLocationDTO) {
+    public SFBLocation(SFBLocationDTO sfbLocationDTO) {
         super(SFB_LOCATION, sfbLocationDTO);
         this.sfbLocationDTO = sfbLocationDTO;
     }

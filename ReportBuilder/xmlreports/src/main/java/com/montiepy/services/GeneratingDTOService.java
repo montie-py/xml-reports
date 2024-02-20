@@ -5,7 +5,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import com.montiepy.DTO.DatasetLeavesDTO.CostBearerDTO;
+import com.montiepy.DTO.DatasetLeavesDTO.InsurantDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ProceduralDataDTO;
+import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.AddressDTO;
+import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.ContactDTO;
+import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.ExtensionDTO;
+import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.OrderNumberDTO;
+import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.SFBLocationDTO;
+import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.SFBPreviousDTO;
 
 public class GeneratingDTOService {
     private HashMap<String, Map> x3Array;
@@ -30,20 +38,21 @@ public class GeneratingDTOService {
     }
 
     public CostBearerDTO generateCostBearerDTO() {
-        HashMap<String, Object> costBearerData = (HashMap)x3Array.get("costbearer");
+        HashMap<String, HashMap<String, String>> costBearerData = (HashMap)x3Array.get("costbearer");
 
-        HashMap<String, String> costBearerContactData = (HashMap<String, String>) costBearerData.get("contactData");
-        HashMap<String, String> costBearerAddressData = (HashMap<String, String>) costBearerData.get("addressData");
-        HashMap<String, String> sfbLocationData = (HashMap<String, String>) costBearerData.get("sfbLocationData");
-        HashMap<String, String> sfbPreviousData = (HashMap<String, String>) costBearerData.get("sfbPreviousData");
-        HashMap<String, String> orderNumberData = (HashMap<String, String>) costBearerData.get("orderNumberData");
+        HashMap<String, String> data = costBearerData.get("data");
+        HashMap<String, String> costBearerContactData = costBearerData.get("contactData");
+        HashMap<String, String> costBearerAddressData = costBearerData.get("addressData");
+        HashMap<String, String> sfbLocationData = costBearerData.get("sfbLocationData");
+        HashMap<String, String> sfbPreviousData = costBearerData.get("sfbPreviousData");
+        HashMap<String, String> orderNumberData = costBearerData.get("orderNumberData");
 
         return (new CostBearerDTO())
-            .setClerk(costBearerData.get("clerk"))
-            .setSalutation(costBearerData.get("salutation"))
-            .setCaseNumber(costBearerData.get("caseNumber"))
-            .setKtIk(costBearerData.get("ik"))
-            .setKtName(costBearerData.get("name"))
+            .setClerk(data.get("clerk"))
+            .setSalutation(data.get("salutation"))
+            .setCaseNumber(data.get("caseNumber"))
+            .setKtIk(data.get("ik"))
+            .setKtName(data.get("name"))
             .setSfbLocationData(
                 (new SFBLocationDTO())
                     .setZip(sfbLocationData.get("zip"))
@@ -75,7 +84,6 @@ public class GeneratingDTOService {
                 .setLkz(costBearerAddressData.get("lkz"))
                 .setAddition(costBearerAddressData.get("addition"))
                 .setCity(costBearerAddressData.get("city"))
-                .setPostOffice(costBearerAddressData.get("postOffice"))
                 .setZip(costBearerAddressData.get("zipcode"))
                 .setDistrict(costBearerAddressData.get("district"))
             )
@@ -421,7 +429,7 @@ public class GeneratingDTOService {
         HashMap<String, String> cancellationData = (HashMap)x3Array.get("cancellation");
 
         return (new CancellationDTO())
-            .setOrderNumber(cancellationData.get("orderNumber"))
+            .setOrderNumberData(cancellationData.get("orderNumber"))
             .setOrderType(cancellationData.get("orderType"))
             .setComment(cancellationData.get("comment"));
     }

@@ -3,7 +3,7 @@ package com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.AbstractDatasetLeafDTO;
 import com.montiepy.DTO.DatasetStructureDTO.LeafDTO;
 
-public class SfbLocationDTO extends AbstractDatasetLeafDTO{
+public class SFBLocationDTO extends AbstractDatasetLeafDTO{
     private static final String NAME = "mdk2:Name";
     private static final String ZIP = "mdk2:PLZ";
     private static final String CITY = "mdk2:Ort";
@@ -19,7 +19,7 @@ public class SfbLocationDTO extends AbstractDatasetLeafDTO{
         return this.name;
     }
 
-    public SfbLocationDTO setName(String name) {
+    public SFBLocationDTO setName(String name) {
         this.name = new LeafDTO(NAME, name);
         return this;
     }
@@ -28,7 +28,7 @@ public class SfbLocationDTO extends AbstractDatasetLeafDTO{
         return this.zip;
     }
 
-    public SfbLocationDTO setZip(String zip) {
+    public SFBLocationDTO setZip(String zip) {
         this.zip = new LeafDTO(ZIP, zip);
         return this;
     }
@@ -37,7 +37,7 @@ public class SfbLocationDTO extends AbstractDatasetLeafDTO{
         return this.city;
     }
 
-    public SfbLocationDTO setCity(String city) {
+    public SFBLocationDTO setCity(String city) {
         this.city = new LeafDTO(CITY, city);
         return this;
     }
@@ -46,7 +46,7 @@ public class SfbLocationDTO extends AbstractDatasetLeafDTO{
         return this.street;
     }
 
-    public SfbLocationDTO setStreet(String street) {
+    public SFBLocationDTO setStreet(String street) {
         this.street = new LeafDTO(STREET_HOUSENUMBER, street);
         return this;
     }
