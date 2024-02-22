@@ -7,11 +7,13 @@ import java.util.Objects;
 
 import com.montiepy.DTO.DatasetLeavesDTO.CostBearerDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.InsurantDTO;
+import com.montiepy.DTO.DatasetLeavesDTO.LegalGuardianDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ProceduralDataDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.AddressDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.ContactDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.ExtensionDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.OrderNumberDTO;
+import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.PersonDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.SFBLocationDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.SFBPreviousDTO;
 
@@ -96,21 +98,22 @@ public class GeneratingDTOService {
     }
 
     public InsurantDTO generateDataInsurantDTO() {
-        HashMap<String, Object> insurantData = (HashMap)x3Array.get("insurant");
-        HashMap<String, String> insurantPersonData = (HashMap<String, String>)insurantData.get("personData");
-        HashMap<String, String> insurantAddressData = (HashMap<String, String>)insurantData.get("addressData");
-        HashMap<String, String> insurantContactData = (HashMap<String, String>)insurantData.get("contactData");
+        HashMap<String, HashMap<String, String>> insurantData = (HashMap)x3Array.get("insurant");
+        HashMap<String, String> data = insurantData.get("data");
+        HashMap<String, String> insurantPersonData = insurantData.get("personData");
+        HashMap<String, String> insurantAddressData = insurantData.get("addressData");
+        HashMap<String, String> insurantContactData = insurantData.get("contactData");
 
         return (new InsurantDTO())
-            .setInsuranceNumber(insurantData.get("kvnr"))
+            .setInsuranceNumber(data.get("kvnr"))
             .setPersonData(
                 (new PersonDTO())
-                    .setFirstname(insurantPersonData.get("firstName"))
-                    .setLastname(insurantPersonData.get("lastName"))
+                    .setFirstName(insurantPersonData.get("firstName"))
+                    .setLastName(insurantPersonData.get("lastName"))
                     .setTitle(insurantPersonData.get("title"))
                     .setGender(insurantPersonData.get("gender"))
                     .setDateOfBirth(insurantPersonData.get("birthDate"))
-                    .setNameSuffix(insurantPersonData.get("additionalName"))
+                    .setSuffix(insurantPersonData.get("additionalName"))
                     .setPrefix(insurantPersonData.get("prefix"))
             )
             .setAddressData(
@@ -132,22 +135,23 @@ public class GeneratingDTOService {
     }
 
     private LegalGuardianDTO generateLegalGuardianDTO() {
-        HashMap<String, Object> legalGuardianData = (HashMap)x3Array.get("legalGuardian");
-        HashMap<String, String> legalGuardianPersonData = (HashMap<String, String>)legalGuardianData.get("personData");
-        HashMap<String, String> legalGuardianAddressData = (HashMap<String, String>)legalGuardianData.get("addressData");
-        HashMap<String, String> legalGuardianContactData = (HashMap<String, String>)legalGuardianData.get("contactData");
+        HashMap<String, HashMap<String, String>> legalGuardianData = (HashMap)x3Array.get("legalGuardian");
+        HashMap<String, String> data = legalGuardianData.get("data");
+        HashMap<String, String> legalGuardianPersonData = legalGuardianData.get("personData");
+        HashMap<String, String> legalGuardianAddressData = legalGuardianData.get("addressData");
+        HashMap<String, String> legalGuardianContactData = legalGuardianData.get("contactData");
 
         return (new LegalGuardianDTO())
-            .setOtherAdressat(legalGuardianData.get("otherAdressat"))
-            .setSpecialNotes(legalGuardianData.get("specialNotes"))
+            .setOtherAdressat(data.get("otherAdressat"))
+            .setSpecialNotes(data.get("specialNotes"))
             .setPersonData(
                 (new PersonDTO())
-                    .setFirstname(legalGuardianPersonData.get("firstName"))
-                    .setLastname(legalGuardianPersonData.get("lastName"))
+                    .setFirstName(legalGuardianPersonData.get("firstName"))
+                    .setLastName(legalGuardianPersonData.get("lastName"))
                     .setTitle(legalGuardianPersonData.get("title"))
                     .setGender(legalGuardianPersonData.get("gender"))
                     .setDateOfBirth(legalGuardianPersonData.get("birthDate"))
-                    .setNameSuffix(legalGuardianPersonData.get("additionalName"))
+                    .setSuffix(legalGuardianPersonData.get("additionalName"))
                     .setPrefix(legalGuardianPersonData.get("prefix"))
             )
             .setAddressData(
@@ -410,7 +414,7 @@ public class GeneratingDTOService {
         return (new DelayDTO())
             .setReason(delayData.get("reason"))
             .setComment(delayData.get("comment"))
-            .setAddress(delayData.get("address"))
+            .setAddressData(delayData.get("address"))
             .setTime(delayData.get("time"))
             .setDate(delayData.get("date"))
             .setCity(delayData.get("city"))
