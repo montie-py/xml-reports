@@ -8,10 +8,12 @@ import java.util.Objects;
 import com.montiepy.DTO.DatasetLeavesDTO.CostBearerDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.InsurantDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.LegalGuardianDTO;
+import com.montiepy.DTO.DatasetLeavesDTO.PrescriberDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ProceduralDataDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.AddressDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.ContactDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.ExtensionDTO;
+import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.IdentifierDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.OrderNumberDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.PersonDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.SFBLocationDTO;
@@ -172,30 +174,31 @@ public class GeneratingDTOService {
     }
 
     public PrescriberDTO generatePrescriberDTO() {
-        HashMap<String, Object> prescriberData = (HashMap)x3Array.get("prescriber");
-        HashMap<String, String> prescriberPersonData = (HashMap<String, String>)prescriberData.get("personData");
-        HashMap<String, String> prescriberAddressData = (HashMap<String, String>)prescriberData.get("addressData");
-        HashMap<String, String> prescriberContactData = (HashMap<String, String>)prescriberData.get("contactData");
+        HashMap<String, HashMap<String, String>> prescriberData = (HashMap)x3Array.get("prescriber");
+        HashMap<String, String> data = prescriberData.get("data");
+        HashMap<String, String> prescriberPersonData = prescriberData.get("personData");
+        HashMap<String, String> prescriberAddressData = prescriberData.get("addressData");
+        HashMap<String, String> prescriberContactData = prescriberData.get("contactData");
 
         return (new PrescriberDTO())
-        .setDifferentDesignation(prescriberData.get("otherAdressat"))
-        .setSpecialistDesignation(prescriberData.get("specialNotes"))
+        .setDifferentDesignation(data.get("otherAdressat"))
+        .setSpecialistDesignation(data.get("specialNotes"))
         .setIdentifierData(
             (new IdentifierDTO())
                 .setLanr(prescriberPersonData.get("lanr"))
                 .setKzvArea(prescriberPersonData.get("kzvArea"))
                 .setDentistNumber(prescriberPersonData.get("dentistNumber"))
-                .setBnsr(prescriberPersonData.get("bnsr"))
+                .setBsnr(prescriberPersonData.get("bnsr"))
                 .setIk(prescriberPersonData.get("ik"))
         )
         .setPersonData(
             (new PersonDTO())
-                .setFirstname(prescriberPersonData.get("firstName"))
-                .setLastname(prescriberPersonData.get("lastName"))
+                .setFirstName(prescriberPersonData.get("firstName"))
+                .setLastName(prescriberPersonData.get("lastName"))
                 .setTitle(prescriberPersonData.get("title"))
                 .setGender(prescriberPersonData.get("gender"))
                 .setDateOfBirth(prescriberPersonData.get("birthDate"))
-                .setNameSuffix(prescriberPersonData.get("additionalName"))
+                .setSuffix(prescriberPersonData.get("additionalName"))
                 .setPrefix(prescriberPersonData.get("prefix"))
         )
         .setAddressData(
