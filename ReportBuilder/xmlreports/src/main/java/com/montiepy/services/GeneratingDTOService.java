@@ -10,6 +10,7 @@ import com.montiepy.DTO.DatasetLeavesDTO.InsurantDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.LegalGuardianDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.PrescriberDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ProceduralDataDTO;
+import com.montiepy.DTO.DatasetLeavesDTO.ServiceProviderDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.AddressDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.ContactDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.ExtensionDTO;
@@ -219,14 +220,15 @@ public class GeneratingDTOService {
     }
 
     public ServiceProviderDTO generateServiceProviderDTO() {
-        HashMap<String, Object> serviceProviderData = (HashMap)x3Array.get("serviceProvider");
-        HashMap<String, String> serviceProviderAddressData = (HashMap<String, String>)serviceProviderData.get("addressData");
-        HashMap<String, String> serviceProviderContactData = (HashMap<String, String>)serviceProviderData.get("contactData");
+        HashMap<String, HashMap<String, String>> serviceProviderData = (HashMap)x3Array.get("serviceProvider");
+        HashMap<String, String> data = serviceProviderData.get("data");
+        HashMap<String, String> serviceProviderAddressData = serviceProviderData.get("addressData");
+        HashMap<String, String> serviceProviderContactData = serviceProviderData.get("contactData");
 
         return (new ServiceProviderDTO())
-        .setIk(serviceProviderData.get("ik"))
-        .setName(serviceProviderData.get("name"))
-        .setNameLocation(serviceProviderData.get("nameLocation"))
+        .setIk(data.get("ik"))
+        .setName(data.get("name"))
+        .setNameLocation(data.get("nameLocation"))
         .setAddressData(
             (new AddressDTO())
                 .setStreetHousenumber(serviceProviderAddressData.get("street"))
