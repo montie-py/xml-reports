@@ -3,6 +3,9 @@ package com.montiepy.DTO.DatasetLeavesDTO;
 import java.util.List;
 
 import com.montiepy.DTO.DatasetStructureDTO.LeafDTO;
+import com.montiepy.DatasetStructure.Aids;
+import com.montiepy.DatasetStructure.AssignmentQuestion;
+import com.montiepy.DatasetStructure.MiMaRecord;
 import com.montiepy.DatasetStructure.Prescriber;
 import com.montiepy.DatasetStructure.ServiceProvider;
 
@@ -20,6 +23,6 @@ public class CommissionExpertOpinionToolsDTO extends AbstractDatasetLeafDTO{
     private Prescriber prescriber;
     private Aids aids;
     private List<AssignmentQuestion> assignmentQuestions;
-    private List<MimaRecord> mimaRecords;
+    private List<MiMaRecord> mimaRecords;
     private FrontLoading FrontLoading;
 }
