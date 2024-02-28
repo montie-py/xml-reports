@@ -5,11 +5,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import com.montiepy.DTO.DatasetLeavesDTO.CommissionExpertOpinionToolsDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.CostBearerDTO;
+import com.montiepy.DTO.DatasetLeavesDTO.DiagnoseDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.InsurantDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.LegalGuardianDTO;
+import com.montiepy.DTO.DatasetLeavesDTO.MiMaRecordDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.PrescriberDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ProceduralDataDTO;
+import com.montiepy.DTO.DatasetLeavesDTO.RehabilitationDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ServiceProviderDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.AddressDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.ContactDTO;

@@ -3,19 +3,20 @@ package com.montiepy.DTO.DatasetLeavesDTO;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.montiepy.DTO.DatasetStructureDTO.DatasetDTO;
 import com.montiepy.DatasetStructure.Hospitalization;
 import com.montiepy.DatasetStructure.PreSupplyAids;
 import com.montiepy.DatasetStructure.Rehabilitation;
 import com.montiepy.DatasetStructure.Remedy;
 
 public class FrontLoadingDTO extends AbstractDatasetLeafDTO{
-    private List<Hospitalization> hospitalizations;
-    private List<Rehabilitation> rehabilitations;
-    private List<PreSupplyAids> preSupplyAids;
-    private List<Remedy> remedies;
+    private List<DatasetDTO> hospitalizations;
+    private List<DatasetDTO> rehabilitations;
+    private List<DatasetDTO> preSupplyAids;
+    private List<DatasetDTO> remedies;
 
 
-    public List<Hospitalization> getHospitalizations() {
+    public List<DatasetDTO> getHospitalizations() {
         return this.hospitalizations;
     }
 
@@ -26,7 +27,7 @@ public class FrontLoadingDTO extends AbstractDatasetLeafDTO{
         return this;
     }
 
-    public List<Rehabilitation> getRehabilitations() {
+    public List<DatasetDTO> getRehabilitations() {
         return this.rehabilitations;
     }
 
@@ -37,7 +38,7 @@ public class FrontLoadingDTO extends AbstractDatasetLeafDTO{
         return this;
     }
 
-    public List<PreSupplyAids> getPreSupplyAids() {
+    public List<DatasetDTO> getPreSupplyAids() {
         return this.preSupplyAids;
     }
 
@@ -48,7 +49,7 @@ public class FrontLoadingDTO extends AbstractDatasetLeafDTO{
         return this;
     }
 
-    public List<Remedy> getRemedies() {
+    public List<DatasetDTO> getRemedies() {
         return this.remedies;
     }
 
