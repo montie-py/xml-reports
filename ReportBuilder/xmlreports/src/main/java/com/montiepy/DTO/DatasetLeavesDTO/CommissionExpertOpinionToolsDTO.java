@@ -24,5 +24,5 @@ public class CommissionExpertOpinionToolsDTO extends AbstractDatasetLeafDTO{
     private Aids aids;
     private List<AssignmentQuestion> assignmentQuestions;
     private List<MiMaRecord> mimaRecords;
-    private FrontLoading FrontLoading;
+    private FrontLoadingDTO FrontLoading;
 }

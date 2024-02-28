@@ -21,7 +21,7 @@ public class FrontLoadingDTO extends AbstractDatasetLeafDTO{
 
     public FrontLoadingDTO setHospitalizations(List<HospitalizationDTO> hospitalizationsDTOs) {
         hospitalizations = hospitalizationsDTOs.stream()
-                            .map(hospitalizationDTO -> new Hospitalization(hospitalizationDTO))
+                            .map(Hospitalization::new)
                             .collect(Collectors.toList());
         return this;
     }
@@ -30,24 +30,33 @@ public class FrontLoadingDTO extends AbstractDatasetLeafDTO{
         return this.rehabilitations;
     }
 
-    public void setRehabilitations(List<Rehabilitation> rehabilitations) {
-        this.rehabilitations = rehabilitations;
+    public FrontLoadingDTO setRehabilitations(List<RehabilitationDTO> rehabilitationDTOs) {
+        rehabilitations = rehabilitationDTOs.stream()
+                            .map(Rehabilitation::new)
+                            .collect(Collectors.toList());
+        return this;
     }
 
     public List<PreSupplyAids> getPreSupplyAids() {
         return this.preSupplyAids;
     }
 
-    public void setPreSupplyAids(List<PreSupplyAids> preSupplyAids) {
-        this.preSupplyAids = preSupplyAids;
+    public FrontLoadingDTO setPreSupplyAids(List<PreSupplyAidsDTO> preSupplyAidsDTOs) {
+        preSupplyAids = preSupplyAidsDTOs.stream()
+                            .map(PreSupplyAids::new)
+                            .collect(Collectors.toList());
+        return this;
     }
 
     public List<Remedy> getRemedies() {
         return this.remedies;
     }
 
-    public void setRemedies(List<Remedy> remedies) {
-        this.remedies = remedies;
+    public FrontLoadingDTO setRemedies(List<RemedyDTO> remediesDTOs) {
+        remedies = remediesDTOs.stream()
+                    .map(Remedy::new)
+                    .collect(Collectors.toList());
+        return this;
     }
 
 }
