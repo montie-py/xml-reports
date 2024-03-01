@@ -5,15 +5,22 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import com.montiepy.DTO.DatasetLeavesDTO.AidsDTO;
+import com.montiepy.DTO.DatasetLeavesDTO.AssignmentQuestionDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.CommissionExpertOpinionToolsDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.CostBearerDTO;
+import com.montiepy.DTO.DatasetLeavesDTO.DelayDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.DiagnoseDTO;
+import com.montiepy.DTO.DatasetLeavesDTO.FrontLoadingDTO;
+import com.montiepy.DTO.DatasetLeavesDTO.HospitalizationDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.InsurantDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.LegalGuardianDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.MiMaRecordDTO;
+import com.montiepy.DTO.DatasetLeavesDTO.PreSupplyAidsDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.PrescriberDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ProceduralDataDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.RehabilitationDTO;
+import com.montiepy.DTO.DatasetLeavesDTO.RemedyDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ServiceProviderDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.AddressDTO;
 import com.montiepy.DTO.DatasetLeavesDTO.ReusableLeavesDTO.ContactDTO;
@@ -251,28 +258,12 @@ public class GeneratingDTOService {
     }
 
     public CommissionExpertOpinionToolsDTO generateCommissionExpertOpinionToolsDTO() {
-        HashMap<String, Object> commissionExpertOpinionToolsData = (HashMap)x3Array.get("commissionExpertOpinionTools");
+        HashMap<String, String> commissionExpertOpinionToolsData = (HashMap)x3Array.get("commissionExpertOpinionTools");
 
         return (new CommissionExpertOpinionToolsDTO())
             .setAnnotation(commissionExpertOpinionToolsData.get("annotation"))
-            .setRequestReceivedDate(commissionExpertOpinionToolsData.get("requestReceivedDate"))
-            .setNumberPlants(commissionExpertOpinionToolsData.get("numberPlants"))
-            .setNumberInstallationsPost(commissionExpertOpinionToolsData.get("numberInstallationsPost"))
-            .setOrderType(commissionExpertOpinionToolsData.get("orderType"))
-            .setAssessmentType(commissionExpertOpinionToolsData.get("assessmentType"))
-            .setExplanationAttachmentsDa(commissionExpertOpinionToolsData.get("explanationAttachmentsDA"))
-            .setExplanationAttachmentsPost(commissionExpertOpinionToolsData.get("explanationAttachmentsPost"))
-            .setExplanationDocumentsMd(commissionExpertOpinionToolsData.get("explanationDocumentsMD"))
-            .setPreparerPvReport(commissionExpertOpinionToolsData.get("preparerPvReport"))
-            .setDeadline(commissionExpertOpinionToolsData.get("deadline"))
-            .setDeadlineDate(commissionExpertOpinionToolsData.get("deadlineDate"))
-            .setKvaAmount(commissionExpertOpinionToolsData.get("kvaAmount"))
+            .setRequestReceiveDate(commissionExpertOpinionToolsData.get("requestReceiveDate"))
             .setKvaDate(commissionExpertOpinionToolsData.get("kvaDate"))
-            .setOpData(commissionExpertOpinionToolsData.get("opDate"))
-            .setLevelOfCare(commissionExpertOpinionToolsData.get("careLevel"))
-            .setLevelOfCareFromTo(commissionExpertOpinionToolsData.get("careLevelDateFrom"))
-            .setCareService(commissionExpertOpinionToolsData.get("careService"))
-            .setDocumentsAtMd(commissionExpertOpinionToolsData.get("documentsAtMD"))
             .setPrescriptionDate(commissionExpertOpinionToolsData.get("prescriptionDate"));
     }
 
@@ -314,7 +305,7 @@ public class GeneratingDTOService {
         MiMaRecordDTO mimaRecordDTOItem;
         for (HashMap<String, String> mimaDatum : mimaData) {
             mimaRecordDTOItem = (new MiMaRecordDTO())
-                .setorderNumber(mimaDatum.get("orderNumber"));
+                .setOrderNumber(mimaDatum.get("orderNumber"));
             result.add(mimaRecordDTOItem);
         }
         return result;
@@ -326,7 +317,7 @@ public class GeneratingDTOService {
         ArrayList<RemedyDTO> result = new ArrayList<>();
 
         RemedyDTO remedyDTOItem;
-        for (HashMap<String, String> remediesDatum : remediesData) {
+        for (HashMap<String, String> remedyDatum : remediesData) {
             remedyDTOItem = (new RemedyDTO())
                 .setStart(remedyDatum.get("start"))
                 .setEnd(remedyDatum.get("end"))
@@ -411,7 +402,6 @@ public class GeneratingDTOService {
             .setTo(aidsData.get("to"))
             .setUnit(aidsData.get("unit"))
             .setHmnr(aidsData.get("hmnr"))
-            .setKzh(aidsData.get("kzh"))
             .setLfdNrHm(aidsData.get("lfdNr"))
             .setAmount(aidsData.get("amount")/*,$attributes*/)
             .setFrom(aidsData.get("from"));
@@ -423,7 +413,7 @@ public class GeneratingDTOService {
         return (new DelayDTO())
             .setReason(delayData.get("reason"))
             .setComment(delayData.get("comment"))
-            .setAddressData(delayData.get("address"))
+            .setAddress(delayData.get("address"))
             .setTime(delayData.get("time"))
             .setDate(delayData.get("date"))
             .setCity(delayData.get("city"))
